@@ -54,19 +54,19 @@
   #mascot {
     position: fixed; bottom: 6px; left: 0; z-index: 20;
     width: 66px; height: 88px; display: block;
-    animation: mascot-walk 95s linear infinite;
+    animation: mascot-walk 42s linear infinite;
     will-change: transform;
     filter: drop-shadow(0 2px 4px rgba(60, 50, 40, 0.20));
   }
   #mascot .figure {
     width: 66px; height: 88px; display: block;
     background: url("assets/walk1.png") center bottom / contain no-repeat;
-    animation: mascot-step 0.72s steps(1) infinite, mascot-sway 1.44s ease-in-out infinite;
+    animation: mascot-step 0.5s steps(1) infinite, mascot-sway 1.0s ease-in-out infinite;
   }
   @keyframes mascot-walk {
-    0%   { transform: translateX(105vw); }
-    46%  { transform: translateX(58vw); }
-    54%  { transform: translateX(58vw); } /* とちゅうで一休み */
+    0%   { transform: translateX(100vw); }
+    42%  { transform: translateX(55vw); }
+    52%  { transform: translateX(55vw); } /* とちゅうで一休み */
     100% { transform: translateX(-90px); }
   }
   @keyframes mascot-step {
