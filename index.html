@@ -81,6 +81,15 @@
     #mascot { animation: none; left: auto; right: 16px; }
     #mascot .figure { animation: none; }
   }
+  /* ネッドくんのかくれんぼ(たまに、どこかのセクションの隅に絵本が置いてある) */
+  section { position: relative; }
+  #ned {
+    position: absolute; right: 14px; bottom: 10px;
+    width: 46px; height: 38px; display: none;
+    transform: rotate(-7deg); opacity: 0.92;
+  }
+  #ned.here { display: block; }
+  #ned:hover { transform: rotate(-3deg); }
   /* 1日の気配(スクロール位置=時刻に合わせて家族の気配が現れる) */
   #kehai {
     position: fixed; left: 16px; bottom: 14px; z-index: 10;
@@ -268,6 +277,18 @@
   <span class="figure"></span>
 </a>
 
+<a id="ned" href="https://shibe0.substack.com/p/youtube?utm_source=site&utm_medium=web&utm_content=ned" target="_blank" rel="noopener" title="…ネッドくんだ" aria-label="ネッドくんの記事へ">
+  <svg viewBox="0 0 46 38" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- くたびれた薄い絵本(角丸・ページの手あと) -->
+    <rect x="3" y="6" width="40" height="28" rx="4" fill="#efe6d6" stroke="#8a7c6a" stroke-width="1.2"/>
+    <rect x="3" y="4" width="40" height="27" rx="4" fill="#c98f6e" stroke="#8a7c6a" stroke-width="1.4"/>
+    <rect x="3" y="4" width="7" height="27" rx="3.5" fill="#b57a5b"/>
+    <line x1="14" y1="12" x2="36" y2="12" stroke="#f4ead9" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="14" y1="18" x2="31" y2="18" stroke="#f4ead9" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 39 8 q 3 2 2 5" stroke="#8a7c6a" stroke-width="0.9" fill="none" opacity="0.6"/>
+  </svg>
+</a>
+
 <footer class="wrap">
   <div class="sig">しべ。</div>
   <div class="links">
@@ -390,6 +411,18 @@
       if (!ticking) { requestAnimationFrame(() => { paintAll(); ticking = false; }); ticking = true; }
     }, { passive: true });
     paintAll();
+  })();
+
+  /* ---- ネッドくんのかくれんぼ(4割の確率で、どこかのセクションの隅にいる) ---- */
+  (function () {
+    const debug = location.search.indexOf("ned") !== -1;
+    if (Math.random() > 0.4 && !debug) return; // 今日はいない日
+    const spots = document.querySelectorAll("section");
+    if (!spots.length) return;
+    const spot = spots[Math.floor(Math.random() * spots.length)];
+    const ned = document.getElementById("ned");
+    spot.appendChild(ned);
+    ned.classList.add("here");
   })();
 
   const MONTHS = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
