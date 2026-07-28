@@ -40,6 +40,42 @@
     font-size: 17px; line-height: 2;
   }
   .itteki-box .note { font-size: 12.5px; color: var(--ink-soft); margin-top: 14px; }
+  /* いつもの顔ぶれ */
+  .kao { display: flex; gap: 18px; align-items: center; text-decoration: none; color: inherit; padding: 12px 0; }
+  .kao + .kao { border-top: 1px dashed var(--line); }
+  .kao img {
+    width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+    border: 2px solid var(--accent-soft); background: #fff;
+  }
+  .kao .name { display: block; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 15.5px; font-weight: 600; }
+  .kao .word { display: block; font-size: 13.5px; color: var(--ink-soft); margin-top: 3px; }
+  /* 通りかかるマスコット(アイコンそのまま・ゆっくり横断+ぷかぷか) */
+  #mascot {
+    position: fixed; bottom: 10px; left: 0; z-index: 20;
+    width: 52px; height: 52px; display: block;
+    animation: mascot-walk 95s linear infinite;
+    will-change: transform;
+  }
+  #mascot img {
+    width: 52px; height: 52px; border-radius: 50%; display: block;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 2px 8px rgba(60, 50, 40, 0.18);
+    animation: mascot-bob 2.6s ease-in-out infinite;
+  }
+  @keyframes mascot-walk {
+    0%   { transform: translateX(105vw); }
+    46%  { transform: translateX(58vw); }
+    54%  { transform: translateX(58vw); } /* とちゅうで一休み */
+    100% { transform: translateX(-70px); }
+  }
+  @keyframes mascot-bob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-5px) rotate(2deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #mascot { animation: none; left: auto; right: 16px; }
+    #mascot img { animation: none; }
+  }
   /* 1日の気配(スクロール位置=時刻に合わせて家族の気配が現れる) */
   #kehai {
     position: fixed; left: 16px; bottom: 14px; z-index: 10;
@@ -197,6 +233,19 @@
 </section>
 
 <section class="wrap">
+  <h2>いつもの顔ぶれ</h2>
+  <p class="lead">Substackで、いつも言葉を交わしている方々。(ご本人の了承をいただいて、しべの画風で描かせてもらっています)</p>
+  <a class="kao" href="https://peeton.substack.com" target="_blank" rel="noopener">
+    <img src="assets/kao-peeton.png" alt="ピートンさん" width="88" height="88" loading="lazy">
+    <span>
+      <span class="name">ピートン☀️子育て研究員</span>
+      <span class="word">家庭を実験室にする研究員さん。コメント欄のあたたかさは、たぶんSubstackいち。</span>
+    </span>
+  </a>
+  <p class="lead" style="margin-top:14px">…ちなみにこのページのどこかを、ご本人が通りかかることがあります。</p>
+</section>
+
+<section class="wrap">
   <h2>今日の一滴</h2>
   <p class="lead">毎日ひとつだけ、問いを置いています。</p>
   <div class="itteki-box">
@@ -206,6 +255,10 @@
 </section>
 
 <div id="kehai" aria-hidden="true"><span class="clock"></span><span class="line"></span></div>
+
+<a id="mascot" href="https://peeton.substack.com" target="_blank" rel="noopener" title="ピートン☀️子育て研究員(通りかかり中)" aria-label="ピートンさんのSubstackへ">
+  <img src="assets/kao-peeton.png" alt="">
+</a>
 
 <footer class="wrap">
   <div class="sig">しべ。</div>
