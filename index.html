@@ -7,7 +7,7 @@
 <meta name="description" content="3歳と1歳のワーママ。ちゃんとを手放したら、ちょっとだけ息ができた。週1本のエッセイと、毎日のちいさなNotes。">
 <meta property="og:title" content="しべ。｜ちゃんとしたママ、やめました">
 <meta property="og:description" content="3歳と1歳のワーママ。ちゃんとを手放したら、ちょっとだけ息ができた。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="icon" href="assets/favicon.png">
 <style>
   :root {
     --paper: #faf6ef;
@@ -54,7 +54,12 @@
   .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
 
   /* ヘッダー */
-  header { padding: 72px 0 48px; text-align: center; }
+  header { padding: 64px 0 48px; text-align: center; }
+  .portrait {
+    width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--accent-soft); margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(80, 65, 50, 0.10);
+  }
   .brand {
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
     font-size: 44px; letter-spacing: 0.08em; font-weight: 600;
@@ -122,6 +127,7 @@
 <body>
 
 <header class="wrap">
+  <img class="portrait" src="assets/shibe-chara.jpg" alt="しべと子どもふたり" width="112" height="112">
   <div class="brand">しべ。<small>ちゃんとしたママ、やめました</small></div>
   <p class="bio">3歳と1歳のワーママ。<br>ちゃんとを手放したら、ちょっとだけ息ができた。<br>怒鳴って落ち込む日もあるけど、まぁいっか。</p>
   <p class="aisatsu" id="aisatsu"></p>
