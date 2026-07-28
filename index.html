@@ -215,7 +215,7 @@
       <span class="d">全部、機械に任せてきたのに。</span>
     </span>
   </a>
-  <a class="pick" href="https://shibe0.substack.com/p/e5a?utm_source=site&utm_medium=web" target="_blank" rel="noopener">
+  <a class="pick" id="pick-latest" href="https://shibe0.substack.com/p/e5a?utm_source=site&utm_medium=web" target="_blank" rel="noopener">
     <img src="https://substackcdn.com/image/fetch/w_640/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11ab2559-f797-4e2f-9a73-7e335faff631_1920x1080.png" alt="" loading="lazy">
     <span>
       <span class="tag">最新のエッセイ</span>
@@ -461,6 +461,16 @@
   fetch("articles.json")
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(articles => {
+      /* 「最新のエッセイ」ピックを常に最新記事へ自動更新 */
+      const latest = articles[0];
+      const pick = document.getElementById("pick-latest");
+      if (latest && pick) {
+        pick.href = latest.link + "?utm_source=site&utm_medium=web";
+        if (latest.image) pick.querySelector("img").src =
+          "https://substackcdn.com/image/fetch/w_640/" + encodeURIComponent(latest.image);
+        pick.querySelector(".t").textContent = latest.title;
+        pick.querySelector(".d").textContent = latest.subtitle;
+      }
       const box = document.getElementById("articles");
       box.innerHTML = "";
       articles.forEach(a => {
