@@ -40,6 +40,16 @@
     font-size: 17px; line-height: 2;
   }
   .itteki-box .note { font-size: 12.5px; color: var(--ink-soft); margin-top: 14px; }
+  /* 1日の気配(スクロール位置=時刻に合わせて家族の気配が現れる) */
+  #kehai {
+    position: fixed; left: 16px; bottom: 14px; z-index: 10;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 11px; letter-spacing: 0.06em; color: var(--ink-soft);
+    pointer-events: none; opacity: 0; transition: opacity 0.8s ease;
+    max-width: 70vw; line-height: 1.7;
+  }
+  #kehai.on { opacity: 0.85; }
+  #kehai .clock { font-size: 10px; display: block; opacity: 0.8; }
   .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
   .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
 
@@ -189,6 +199,8 @@
   </div>
 </section>
 
+<div id="kehai" aria-hidden="true"><span class="clock"></span><span class="line"></span></div>
+
 <footer class="wrap">
   <div class="sig">しべ。</div>
   <div class="links">
@@ -271,11 +283,45 @@
       document.body.style.backgroundColor = rgb(lerp(a.paper, b.paper, f));
       document.body.style.color = rgb(lerp(a.ink, b.ink, f));
     }
+    /* 1日の気配: スクロール位置=時刻。家族がさりげなく現れる(全部、実際にあったこと) */
+    const KEHAI = [
+      { until: 0.15, clock: "AM 5:30", line: "「ママ、外明るいよ」の声で、一日がはじまる。" },
+      { until: 0.35, clock: "AM 7:40", line: "「はやくして！」をもう三回。やさしい言葉は、まだゼロ。" },
+      { until: 0.55, clock: "PM 0:20", line: "お昼の5分。スマホの中だけ、しずか。" },
+      { until: 0.75, clock: "PM 5:30", line: "お迎えダッシュ。つないだ手は、砂場帰りのざらざらの手。" },
+      { until: 0.92, clock: "PM 8:30", line: "お風呂、歯みがき、絵本。今日もフルコース。" },
+      { until: 1.01, clock: "PM 10:00", line: "寝息がふたつ。今日も、みんな生きててえらい。" }
+    ];
+    const kehaiEl = document.getElementById("kehai");
+    const clockEl = kehaiEl.querySelector(".clock");
+    const lineEl = kehaiEl.querySelector(".line");
+    let kehaiIdx = -1;
+    function paintKehai(t) {
+      const idx = KEHAI.findIndex(k => t < k.until);
+      if (idx !== kehaiIdx) {
+        kehaiIdx = idx;
+        const k = KEHAI[Math.max(0, idx)];
+        kehaiEl.classList.remove("on");
+        setTimeout(() => {
+          clockEl.textContent = k.clock;
+          lineEl.textContent = k.line;
+          kehaiEl.classList.add("on");
+        }, 250);
+      }
+    }
+    const basePaint = paint;
+    function paintAll() {
+      basePaint();
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const t = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      paintKehai(t);
+    }
     let ticking = false;
     window.addEventListener("scroll", () => {
-      if (!ticking) { requestAnimationFrame(() => { paint(); ticking = false; }); ticking = true; }
+      if (!ticking) { requestAnimationFrame(() => { paintAll(); ticking = false; }); ticking = true; }
     }, { passive: true });
-    paint();
+    paintAll();
   })();
 
   const MONTHS = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
