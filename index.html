@@ -81,15 +81,20 @@
     #mascot { animation: none; left: auto; right: 16px; }
     #mascot .figure { animation: none; }
   }
-  /* ネッドくんのかくれんぼ(たまに、どこかのセクションの隅に絵本が置いてある) */
+  /* ネッドくんのかくれんぼ(たまに、どこかのセクションの隅にパラシュートでぶら下がっている) */
   section { position: relative; }
   #ned {
-    position: absolute; right: 14px; bottom: 10px;
-    width: 46px; height: 38px; display: none;
-    transform: rotate(-7deg); opacity: 0.92;
+    position: absolute; right: 18px; top: -6px;
+    width: 54px; height: 88px; display: none;
+    transform-origin: top center;
+    animation: ned-sway 3.6s ease-in-out infinite;
   }
   #ned.here { display: block; }
-  #ned:hover { transform: rotate(-3deg); }
+  @keyframes ned-sway {
+    0%, 100% { transform: rotate(-4deg); }
+    50%      { transform: rotate(4deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { #ned { animation: none; } }
   /* 1日の気配(スクロール位置=時刻に合わせて家族の気配が現れる) */
   #kehai {
     position: fixed; left: 16px; bottom: 14px; z-index: 10;
@@ -278,14 +283,36 @@
 </a>
 
 <a id="ned" href="https://shibe0.substack.com/p/youtube?utm_source=site&utm_medium=web&utm_content=ned" target="_blank" rel="noopener" title="…ネッドくんだ" aria-label="ネッドくんの記事へ">
-  <svg viewBox="0 0 46 38" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- くたびれた薄い絵本(角丸・ページの手あと) -->
-    <rect x="3" y="6" width="40" height="28" rx="4" fill="#efe6d6" stroke="#8a7c6a" stroke-width="1.2"/>
-    <rect x="3" y="4" width="40" height="27" rx="4" fill="#c98f6e" stroke="#8a7c6a" stroke-width="1.4"/>
-    <rect x="3" y="4" width="7" height="27" rx="3.5" fill="#b57a5b"/>
-    <line x1="14" y1="12" x2="36" y2="12" stroke="#f4ead9" stroke-width="2.2" stroke-linecap="round"/>
-    <line x1="14" y1="18" x2="31" y2="18" stroke="#f4ead9" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
-    <path d="M 39 8 q 3 2 2 5" stroke="#8a7c6a" stroke-width="0.9" fill="none" opacity="0.6"/>
+  <svg viewBox="0 0 54 88" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- パラシュートでぶら下がる男の子(オリジナル描き起こし・線画×ピーチ) -->
+    <!-- パラシュートの傘(小さな穴あき) -->
+    <path d="M 5 26 Q 5 6 27 6 Q 49 6 49 26 Q 42 21 38 26 Q 33 21 27 26 Q 21 21 16 26 Q 12 21 5 26 Z"
+          fill="#e8b99a" stroke="#8a6a52" stroke-width="1.4"/>
+    <path d="M 27 6 Q 32 14 30 25" fill="none" stroke="#8a6a52" stroke-width="0.8" opacity="0.5"/>
+    <path d="M 27 6 Q 21 14 23 25" fill="none" stroke="#8a6a52" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="36" cy="14" r="2.1" fill="#faf6ef" stroke="#8a6a52" stroke-width="0.8"/>
+    <!-- ひも -->
+    <line x1="7" y1="26" x2="22" y2="52" stroke="#8a6a52" stroke-width="1"/>
+    <line x1="47" y1="26" x2="32" y2="52" stroke="#8a6a52" stroke-width="1"/>
+    <!-- 男の子 -->
+    <circle cx="27" cy="56" r="8.5" fill="#fdeee2" stroke="#6b5844" stroke-width="1.3"/>
+    <path d="M 20 52 Q 22 47 27 47.5 Q 32 47 34 52 Q 31 50 27 50.5 Q 23 50 20 52 Z" fill="#6b5844"/>
+    <circle cx="24" cy="56.5" r="1.1" fill="#4a3c2e"/>
+    <circle cx="30" cy="56.5" r="1.1" fill="#4a3c2e"/>
+    <path d="M 24.5 60 Q 27 62 29.5 60" fill="none" stroke="#4a3c2e" stroke-width="1.1" stroke-linecap="round"/>
+    <circle cx="22" cy="59" r="1.4" fill="#f3c1a4" opacity="0.7"/>
+    <circle cx="32" cy="59" r="1.4" fill="#f3c1a4" opacity="0.7"/>
+    <!-- 体(つなぎ服) -->
+    <path d="M 22 64 Q 22 62.5 27 62.5 Q 32 62.5 32 64 L 31.5 74 Q 27 76 22.5 74 Z"
+          fill="#a8b8c4" stroke="#6b5844" stroke-width="1.2"/>
+    <!-- 腕(ひもを握る) -->
+    <path d="M 23 65 Q 20 60 21.5 54" fill="none" stroke="#6b5844" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M 31 65 Q 34 60 32.5 54" fill="none" stroke="#6b5844" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- 足 -->
+    <path d="M 24.5 75 L 24 81" stroke="#6b5844" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M 29.5 75 L 30 81" stroke="#6b5844" stroke-width="1.6" stroke-linecap="round"/>
+    <ellipse cx="23.5" cy="82.5" rx="2.4" ry="1.6" fill="#b57a5b"/>
+    <ellipse cx="30.5" cy="82.5" rx="2.4" ry="1.6" fill="#b57a5b"/>
   </svg>
 </a>
 
