@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>しべ。｜ちゃんとしたママ、やめました</title>
+<meta name="description" content="3歳と1歳のワーママ。ちゃんとを手放したら、ちょっとだけ息ができた。週1本のエッセイと、毎日のちいさなNotes。">
+<meta property="og:title" content="しべ。｜ちゃんとしたママ、やめました">
+<meta property="og:description" content="3歳と1歳のワーママ。ちゃんとを手放したら、ちょっとだけ息ができた。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<style>
+  :root {
+    --paper: #faf6ef;
+    --paper-deep: #f2ebdf;
+    --ink: #3f3a33;
+    --ink-soft: #7a7267;
+    --accent: #a97e63;
+    --accent-soft: #e8dccb;
+    --line: #e2d9c9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.9;
+    font-size: 16px;
+  }
+  .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+  /* ヘッダー */
+  header { padding: 72px 0 48px; text-align: center; }
+  .brand {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 44px; letter-spacing: 0.08em; font-weight: 600;
+  }
+  .brand small { font-size: 18px; display: block; margin-top: 10px; letter-spacing: 0.15em; color: var(--ink-soft); font-weight: 400; }
+  .bio { margin: 26px auto 0; max-width: 400px; color: var(--ink-soft); font-size: 14.5px; }
+  .cta {
+    display: inline-block; margin-top: 30px; padding: 13px 34px;
+    background: var(--ink); color: var(--paper); text-decoration: none;
+    border-radius: 999px; font-size: 14.5px; letter-spacing: 0.08em;
+  }
+  .cta:active { opacity: .8; }
+
+  /* セクション共通 */
+  section { padding: 44px 0; }
+  section + section { border-top: 1px solid var(--line); }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 21px; letter-spacing: 0.12em; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .lead { color: var(--ink-soft); font-size: 14px; margin-bottom: 26px; }
+
+  /* はじめての方へ */
+  .promise {
+    background: var(--paper-deep); border-radius: 14px;
+    padding: 22px 24px; font-size: 15px; margin-bottom: 30px;
+  }
+  .promise .sig { display: block; text-align: right; margin-top: 10px; color: var(--ink-soft); font-size: 14px; }
+  .pick { display: flex; gap: 16px; align-items: flex-start; text-decoration: none; color: inherit; padding: 14px 0; }
+  .pick + .pick { border-top: 1px dashed var(--line); }
+  .pick img { width: 96px; height: 54px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: var(--accent-soft); }
+  .pick .t { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 16px; font-weight: 600; line-height: 1.6; }
+  .pick .d { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 1px 10px; margin-bottom: 5px; letter-spacing: 0.05em; }
+
+  /* 記事一覧 */
+  .article-card { display: block; text-decoration: none; color: inherit; margin-bottom: 30px; }
+  .article-card img {
+    width: 100%; aspect-ratio: 1920/1080; object-fit: cover;
+    border-radius: 14px; background: var(--accent-soft); display: block;
+  }
+  .article-card .t {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 19px; font-weight: 600; margin-top: 14px; line-height: 1.65;
+  }
+  .article-card .d { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+  .article-card .date { font-size: 12px; color: var(--ink-soft); margin-top: 6px; letter-spacing: 0.05em; }
+  #articles .fallback { color: var(--ink-soft); font-size: 14px; }
+
+  /* Notesのことば */
+  .kotoba { padding: 6px 0 6px 20px; border-left: 3px solid var(--accent-soft); margin-bottom: 26px; }
+  .kotoba p { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 16px; }
+  .kotoba .from { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+  .notes-link { color: var(--accent); font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+  /* フッター */
+  footer { padding: 56px 0 72px; text-align: center; border-top: 1px solid var(--line); }
+  footer .sig { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 22px; letter-spacing: 0.1em; }
+  footer .links { margin-top: 18px; font-size: 14px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer .copy { margin-top: 26px; font-size: 12px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="brand">しべ。<small>ちゃんとしたママ、やめました</small></div>
+  <p class="bio">3歳と1歳のワーママ。<br>ちゃんとを手放したら、ちょっとだけ息ができた。<br>怒鳴って落ち込む日もあるけど、まぁいっか。</p>
+  <a class="cta" href="https://shibe0.substack.com/subscribe" target="_blank" rel="noopener">Substackで購読する（無料）</a>
+</header>
+
+<section class="wrap" id="first">
+  <h2>はじめての方へ</h2>
+  <p class="lead">ここには、こんなものが届きます。</p>
+  <div class="promise">
+    長いエッセイを、だいたい週に1本。<br>
+    あいだの日は、短いNotesをぽつぽつ。<br>
+    がんばる話ではなくて、「ちゃんと」を少しずつ手放していく記録です。
+    <span class="sig">しべ。</span>
+  </div>
+
+  <a class="pick" href="https://shibe0.substack.com/p/be5" target="_blank" rel="noopener">
+    <img src="https://substack-post-media.s3.amazonaws.com/public/images/e415cf11-4977-4b19-9114-f131429b8490_1920x1080.png" alt="" loading="lazy">
+    <span>
+      <span class="tag">いちばん読まれています</span>
+      <span class="t">まっすぐ寝顔を見られた夜</span>
+      <span class="d">熱の電話に、少しほっとした。</span>
+    </span>
+  </a>
+  <a class="pick" href="https://shibe0.substack.com/p/youtube" target="_blank" rel="noopener">
+    <img src="https://substack-post-media.s3.amazonaws.com/public/images/5f4de743-bea7-4f67-be14-0b4b230148aa_1920x1080.png" alt="" loading="lazy">
+    <span>
+      <span class="tag">いちばん語られています</span>
+      <span class="t">ネッドくんだけは、YouTubeに渡せなかった</span>
+      <span class="d">全部、機械に任せてきたのに。</span>
+    </span>
+  </a>
+  <a class="pick" href="https://shibe0.substack.com/p/e5a" target="_blank" rel="noopener">
+    <img src="https://substack-post-media.s3.amazonaws.com/public/images/11ab2559-f797-4e2f-9a73-7e335faff631_1920x1080.png" alt="" loading="lazy">
+    <span>
+      <span class="tag">最新のエッセイ</span>
+      <span class="t">服を見に行きたいだけなのに</span>
+      <span class="d">一人になりたい、ただそれだけなのに。</span>
+    </span>
+  </a>
+</section>
+
+<section class="wrap">
+  <h2>エッセイ</h2>
+  <p class="lead">これまでの全部。新しい順です。</p>
+  <div id="articles"><p class="fallback">読み込み中…</p></div>
+</section>
+
+<section class="wrap">
+  <h2>Notesのことば</h2>
+  <p class="lead">毎日の短いやつから、いくつか。</p>
+
+  <div class="kotoba">
+    <p>「行くよ」で本当に行ったことは、一回もない。<br>気づいたら、朝の私、やさしい言葉をひとつも使ってなかったなー</p>
+    <div class="from">朝の語彙</div>
+  </div>
+  <div class="kotoba">
+    <p>進まへんのは電車なのに、焦ってるのは私だけ。</p>
+    <div class="from">遅延のそわそわ</div>
+  </div>
+  <div class="kotoba">
+    <p>迎えに行ったら、新しい友達できて、知らん遊び覚えて帰ってきた。<br>心配してた時間、返してほしい(笑)</p>
+    <div class="from">夏休みの幼稚園</div>
+  </div>
+
+  <a class="notes-link" href="https://substack.com/@shibe0/notes" target="_blank" rel="noopener">Notesをぜんぶ見る →</a>
+</section>
+
+<footer class="wrap">
+  <div class="sig">しべ。</div>
+  <div class="links">
+    <a href="https://shibe0.substack.com" target="_blank" rel="noopener">Substack</a>
+    ／
+    <a href="https://substack.com/@shibe0/notes" target="_blank" rel="noopener">Notes</a>
+  </div>
+  <div class="copy">© しべ｜ちゃんとしたママ、やめました</div>
+</footer>
+
+<script>
+  const MONTHS = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+  function fmtDate(pubDate) {
+    const d = new Date(pubDate);
+    if (isNaN(d)) return "";
+    return d.getFullYear() + "年" + MONTHS[d.getMonth()] + d.getDate() + "日";
+  }
+  fetch("articles.json")
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(articles => {
+      const box = document.getElementById("articles");
+      box.innerHTML = "";
+      articles.forEach(a => {
+        const card = document.createElement("a");
+        card.className = "article-card";
+        card.href = a.link;
+        card.target = "_blank";
+        card.rel = "noopener";
+        const img = a.image
+          ? '<img src="' + a.image + '" alt="" loading="lazy">'
+          : "";
+        card.innerHTML =
+          img +
+          '<div class="t"></div>' +
+          '<div class="d"></div>' +
+          '<div class="date">' + fmtDate(a.pubDate) + "</div>";
+        card.querySelector(".t").textContent = a.title;
+        card.querySelector(".d").textContent = a.subtitle;
+        box.appendChild(card);
+      });
+    })
+    .catch(() => {
+      document.getElementById("articles").innerHTML =
+        '<p class="fallback">一覧を読み込めませんでした。<a href="https://shibe0.substack.com/archive" style="color:var(--accent)">Substackのアーカイブ</a>からどうぞ。</p>';
+    });
+</script>
+
+</body>
+</html>
