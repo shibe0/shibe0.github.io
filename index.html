@@ -9,6 +9,9 @@
 <meta property="og:description" content="4歳と1歳のワーママ。ちゃんとを手放したら、ちょっとだけ息ができた。">
 <meta property="og:image" content="https://shibe0.github.io/assets/shibe-chara.jpg">
 <link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho+B1:wght@500;700;800&display=swap">
 <style>
   :root {
     --paper: #faf6ef;
@@ -106,13 +109,14 @@
   #kehai.on { opacity: 0.85; }
   #kehai .clock { font-size: 10px; display: block; opacity: 0.8; }
   .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  h2, .brand, .pick .t, .article-card .t, footer .sig { font-feature-settings: "palt"; }
 
   /* ヘッダー */
-  header { padding: 64px 0 48px; text-align: center; }
+  header { padding: 72px 0 56px; text-align: center; }
   .portrait {
-    width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
-    border: 3px solid var(--accent-soft); margin-bottom: 20px;
+    width: 128px; height: 128px; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--accent-soft); margin-bottom: 22px;
     box-shadow: 0 2px 12px rgba(80, 65, 50, 0.10);
   }
   .brand {
@@ -120,54 +124,70 @@
     font-size: 44px; letter-spacing: 0.08em; font-weight: 600;
   }
   .brand small { font-size: 18px; display: block; margin-top: 10px; letter-spacing: 0.15em; color: var(--ink-soft); font-weight: 400; }
-  .bio { margin: 26px auto 0; max-width: 400px; color: var(--ink-soft); font-size: 14.5px; }
+  .bio { margin: 28px auto 0; max-width: 420px; color: var(--ink-soft); font-size: 15px; line-height: 2.1; }
   .cta {
     display: inline-block; margin-top: 30px; padding: 13px 34px;
     background: var(--ink); color: var(--paper); text-decoration: none;
     border-radius: 999px; font-size: 14.5px; letter-spacing: 0.08em;
+    transition: transform .2s ease, opacity .2s ease;
   }
+  .cta:hover { transform: translateY(-2px); }
   .cta:active { opacity: .8; }
 
   /* セクション共通 */
-  section { padding: 44px 0; }
+  section { padding: 56px 20px; }
   section + section { border-top: 1px solid var(--line); }
   h2 {
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
     font-size: 21px; letter-spacing: 0.12em; font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .lead { color: var(--ink-soft); font-size: 14px; margin-bottom: 26px; }
+  h2::before {
+    content: ""; display: block; width: 24px; height: 2px;
+    background: var(--accent); margin-bottom: 14px;
+  }
+  .lead { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; }
 
   /* はじめての方へ */
   .promise {
     background: var(--paper-deep); border-radius: 14px;
-    padding: 22px 24px; font-size: 15px; margin-bottom: 30px;
+    padding: 26px 28px; font-size: 15px; line-height: 2.1; margin-bottom: 30px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
   }
   .promise .sig { display: block; text-align: right; margin-top: 10px; color: var(--ink-soft); font-size: 14px; }
-  .pick { display: flex; gap: 16px; align-items: flex-start; text-decoration: none; color: inherit; padding: 14px 0; }
+  .pick { display: flex; gap: 18px; align-items: center; text-decoration: none; color: inherit; padding: 16px 0; }
+  .pick > span { display: block; min-width: 0; }
+  .pick .t, .pick .d { display: block; }
+  .pick:hover .t { text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 4px; }
   .pick + .pick { border-top: 1px dashed var(--line); }
-  .pick img { width: 96px; height: 54px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: var(--accent-soft); }
+  .pick img { width: 128px; height: 72px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: var(--accent-soft); }
   .pick .t { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 16px; font-weight: 600; line-height: 1.6; }
   .pick .d { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
-  .tag { display: inline-block; font-size: 11px; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 1px 10px; margin-bottom: 5px; letter-spacing: 0.05em; }
+  .tag { display: inline-block; font-size: 11px; line-height: 1.7; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 1px 10px; margin-bottom: 5px; letter-spacing: 0.05em; }
 
   /* 記事一覧 */
-  .article-card { display: block; text-decoration: none; color: inherit; margin-bottom: 30px; }
+  #articles { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .article-card { display: block; text-decoration: none; color: inherit; }
+  .article-card:first-child { grid-column: 1 / -1; }
+  .article-card img { transition: transform .3s ease, box-shadow .3s ease; }
+  .article-card:hover img { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 65, 50, 0.14); }
+  @media (max-width: 560px) { #articles { grid-template-columns: 1fr; gap: 32px; } }
   .article-card img {
     width: 100%; aspect-ratio: 1920/1080; object-fit: cover;
-    border-radius: 14px; background: var(--accent-soft); display: block;
+    border-radius: 12px; background: var(--accent-soft); display: block;
   }
   .article-card .t {
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    font-size: 19px; font-weight: 600; margin-top: 14px; line-height: 1.65;
+    font-size: 16.5px; font-weight: 600; margin-top: 14px; line-height: 1.65;
   }
-  .article-card .d { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+  .article-card:first-child .t { font-size: 20px; }
+  .article-card .d { font-size: 13.5px; line-height: 1.75; color: var(--ink-soft); margin-top: 4px; }
   .article-card .date { font-size: 12px; color: var(--ink-soft); margin-top: 6px; letter-spacing: 0.05em; }
   #articles .fallback { color: var(--ink-soft); font-size: 14px; }
 
   /* Notesのことば */
   .kotoba { padding: 6px 0 6px 20px; border-left: 3px solid var(--accent-soft); margin-bottom: 26px; }
-  .kotoba p { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 16px; }
+  .kotoba p { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 17px; line-height: 2; }
   .kotoba .from { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
   .notes-link { color: var(--accent); font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
 
@@ -177,22 +197,344 @@
   footer .links { margin-top: 18px; font-size: 14px; }
   footer a { color: var(--accent); text-decoration: none; }
   footer .copy { margin-top: 26px; font-size: 12px; color: var(--ink-soft); }
+
+  /* ===== v2: 動き（Motion Stack F71/F01/F15/F85/F08/F06/F70/F106） ===== */
+  :root { --shu: #D63A1E; --night: #0d0d0f;
+    --spring: cubic-bezier(.22, 1.08, .36, 1); --settle: cubic-bezier(.16, 1, .3, 1); --io: cubic-bezier(.65, 0, .35, 1); }
+  .heavy { font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif; font-weight: 800; }
+
+  /* F71 幕開け */
+  #curtain { position: fixed; inset: 0; z-index: 100; background: var(--night); color: #f5f4f1;
+    transition: transform .8s cubic-bezier(.76, 0, .24, 1); }
+  #curtain.up { transform: translateY(-100%); }
+  #curtain .count { position: absolute; left: 24px; bottom: 28px; font: 800 clamp(64px, 14vw, 180px)/1 "Helvetica Neue", Arial, sans-serif;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  #curtain .name { position: absolute; right: 24px; bottom: 34px; font-size: 14px; letter-spacing: .3em; opacity: .7; }
+  #curtain .bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--shu);
+    transform-origin: left; transform: scaleX(0); }
+
+  /* F15 最初の画面 + F85 紙が重なる */
+  .stack { position: relative; }
+  .hero { position: sticky; top: 0; height: 100vh; height: 100svh; z-index: 1; overflow: hidden;
+    background: var(--night); color: #f5f4f1; transform-origin: 50% 30%; padding: 0; text-align: left; }
+  .hero video, .hero .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  /* 動画の字と見出しがぶつからないよう、映像は沈めて背景の模様にする */
+  .hero video, .hero .poster { object-fit: contain; filter: brightness(.45) contrast(1.15); }
+  @media (max-aspect-ratio: 1/1) {
+    .hero video, .hero .poster { object-position: 50% 14%; filter: none; }
+    .hero::after { background: linear-gradient(to top, rgba(13,13,15,.95) 45%, transparent 70%); }
+  }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,15,.78), rgba(13,13,15,.15) 65%, transparent); }
+  .hero .inner { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 clamp(20px, 5vw, 64px) clamp(36px, 8vh, 72px);
+    text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+  .hero .kata { font-size: 13px; letter-spacing: .3em; opacity: .85; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(46px, 9.5vw, 132px); line-height: .98; letter-spacing: -0.01em; margin: 0; font-feature-settings: "palt"; }
+  .hero h1 .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+  .hero h1 .ln > span { display: inline-block; }
+  .hero h1 em { font-style: normal; color: var(--shu); }
+  .hero .sub { margin-top: 18px; font-size: 15px; line-height: 1.9; opacity: .9; max-width: 520px; }
+  .hero .cta2 { display: inline-block; margin-top: 26px; padding: 15px 30px; background: var(--shu); color: #fff; text-decoration: none;
+    font-size: 15px; letter-spacing: .08em; text-shadow: none; font-weight: 700; }
+  .hero .cta2:hover { filter: brightness(1.08); }
+  .rise { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+  .go .rise { opacity: 1; transform: none; filter: none;
+    transition: transform .7s var(--spring), opacity .45s var(--settle), filter .45s var(--settle); }
+  .hero h1 .ln > span { transform: translateY(110%); filter: blur(6px); }
+  .go .hero h1 .ln > span { transform: none; filter: none; transition: transform .8s var(--spring), filter .5s var(--settle); }
+  .hero-gap { height: 60vh; }
+  .sheet { position: relative; z-index: 2; background: var(--paper); border-radius: 28px 28px 0 0;
+    box-shadow: 0 -10px 30px rgba(13,13,15,.4); padding-top: 8px; }
+  /* 元のヘッダーは紙の上の自己紹介として残す */
+  .sheet header { padding-top: 56px; }
+
+  /* F08 流れ続ける帯 */
+  .marquee { overflow: hidden; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .marquee .track { display: flex; width: max-content; animation: mq 14s linear infinite; }
+  .marquee.rev .track { animation-direction: reverse; }
+  .marquee .row { display: flex; gap: 2.4vw; padding-right: 2.4vw; white-space: nowrap; font-size: clamp(34px, 6vw, 76px); line-height: 1.1; }
+  .marquee .row span:nth-child(even) { color: var(--ink-soft); font-weight: 400; }
+  .marquee.rev .row { color: transparent; -webkit-text-stroke: 1.2px var(--ink); }
+  @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* F06 切り抜きが開く + F70 触れると寄って傾く */
+  .thumb { position: relative; overflow: hidden; border-radius: 12px; clip-path: inset(0 0 100% 0 round 12px); }
+  .thumb.in { clip-path: inset(0 0 0 0 round 12px); transition: clip-path .9s var(--io); }
+  .article-card .thumb img { border-radius: 0; transform: scale(1.2); }
+  .article-card .thumb.in img { transform: scale(1); transition: transform 1.2s var(--settle); }
+  .article-card:hover .thumb img, .article-card:hover img { box-shadow: none; }
+  .article-card:hover .thumb.in img { transform: scale(1.14) rotate(-2.5deg); transition: transform 1s var(--settle); }
+  .thumb .look { position: absolute; right: 12px; bottom: 12px; background: var(--shu); color: #fff; font-size: 12px; letter-spacing: .12em;
+    padding: 4px 12px; opacity: 0; transform: translateY(8px); filter: blur(4px);
+    transition: transform .45s var(--spring), opacity .3s var(--settle), filter .3s var(--settle); }
+  .article-card:hover .thumb .look { opacity: 1; transform: none; filter: none; transition-delay: .06s; }
+  .portrait { clip-path: circle(0% at 50% 50%); }
+  .portrait.in { clip-path: circle(50% at 50% 50%); transition: clip-path .6s var(--spring) .3s; }
+
+  /* F106 読み進めると濃くなる */
+  .ink-reveal .ch { opacity: .16; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #curtain { display: none; }
+    .rise, .hero h1 .ln > span { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .marquee .track { animation: none; }
+    .thumb, .portrait { clip-path: none !important; }
+    .article-card .thumb img { transform: none !important; }
+    .ink-reveal .ch { opacity: 1 !important; }
+  }
+
+  /* ===== v2b: 黒と白＋朱・太い見出し・雑誌の並び ===== */
+  :root { --paper: #f5f4f1; --paper-deep: #e8e7e3; --ink: #121214; --ink-soft: #6b6b70; --accent: #D63A1E;
+    --accent-soft: #d9d8d4; --line: #d5d4cf; color-scheme: light; }
+  body { background: var(--paper) !important; color: var(--ink) !important; }
+  .dark { --paper: #0d0d0f; --paper-deep: #1b1b1f; --ink: #f2f1ee; --ink-soft: #9b9ba2; --line: #2b2b30; --accent-soft: #2b2b30;
+    background: var(--paper); color: var(--ink); box-shadow: 0 0 0 100vmax var(--paper); clip-path: inset(0 -100vmax); }
+  section + section { border-top: 0; }
+  section.wrap { padding-block: 88px; }
+  .essays.wrap { max-width: 1120px; }
+  .eyebrow { font: 700 12px/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: .32em; color: var(--accent); margin-bottom: 14px; }
+  h2 { font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; font-weight: 800; font-size: clamp(44px, 9vw, 92px);
+    line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 18px; text-wrap: balance; }
+  h2::before { display: none; }
+  h2 .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+  h2 .ln > span { display: inline-block; transform: translateY(110%); filter: blur(6px); }
+  h2.in .ln > span { transform: none; filter: none; transition: transform .8s var(--spring), filter .5s var(--settle); }
+  .lead { font-size: 14.5px; }
+  .cta { border-radius: 0; background: var(--accent); color: #fff; font-weight: 700; }
+
+  /* エ: 自己紹介 */
+  .intro { padding-top: 96px; padding-bottom: 96px; }
+  .facts { list-style: none; display: grid; gap: 6px; }
+  .facts li { font-size: clamp(40px, 8.5vw, 84px); line-height: 1.08; letter-spacing: -0.02em; overflow: hidden; }
+  .facts li span { display: inline-block; transform: translateY(105%) scale(1.15); opacity: 0; transform-origin: left bottom; }
+  .facts.in li span { transform: none; opacity: 1; transition: transform .55s cubic-bezier(.3, 1.3, .5, 1), opacity .2s linear; }
+  .facts.in li:nth-child(2) span { transition-delay: .12s; } .facts.in li:nth-child(3) span { transition-delay: .24s; }
+  .facts.in li:nth-child(4) span { transition-delay: .4s; }
+  .facts b { font-variant-numeric: tabular-nums; }
+  .facts em { font-style: normal; color: var(--accent); }
+  .me { display: flex; gap: 20px; align-items: center; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .me > div { min-width: 0; }
+  .intro .portrait { width: 96px; height: 96px; margin: 0; border: 0; box-shadow: none; filter: grayscale(1) contrast(1.1); flex-shrink: 0; }
+  .intro .bio { margin: 0; max-width: none; color: var(--ink); font-size: 15px; }
+  .intro .aisatsu { margin-top: 8px; }
+
+  /* はじめての方へ */
+  .promise { border-radius: 0; background: transparent; border-left: 4px solid var(--ink); padding: 6px 0 6px 24px;
+    font-size: clamp(18px, 2.6vw, 22px); line-height: 2; }
+  .tag { border-radius: 0; color: var(--accent); border-color: var(--accent); }
+  .pick img { border-radius: 0; }
+
+  /* ウ: 記事は雑誌の並び（大小を混ぜる）。番号は新しい順の並び */
+  .essays { max-width: 1120px; }
+  #articles { grid-template-columns: repeat(6, 1fr); gap: 56px 28px; }
+  .article-card { grid-column: span 3; position: relative; min-width: 0; }
+  .article-card:nth-child(6n+4), .article-card:nth-child(6n+7) { grid-column: span 4; }
+  .article-card:nth-child(6n+5), .article-card:nth-child(6n+6) { grid-column: span 2; }
+  .article-card:first-child { grid-column: 1 / -1; }
+  .article-card .no { display: block; font: 800 44px/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.03em;
+    color: transparent; -webkit-text-stroke: 1.3px var(--ink); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .article-card:first-child .no { font-size: clamp(72px, 12vw, 140px); color: var(--ink); -webkit-text-stroke: 0; }
+  .article-card:hover .no { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+  .thumb, .thumb.in { border-radius: 0; }
+  .thumb { clip-path: inset(0 0 100% 0); } .thumb.in { clip-path: inset(0 0 0 0); }
+  .article-card .t { font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; font-weight: 800; letter-spacing: -0.01em; }
+  .article-card:first-child .t { font-size: clamp(24px, 3.6vw, 40px); line-height: 1.3; }
+  .article-card:nth-child(6n+5) .t, .article-card:nth-child(6n+6) .t { font-size: 15px; }
+  @media (max-width: 700px) {
+    #articles { grid-template-columns: 1fr; gap: 48px; }
+    .article-card, .article-card:nth-child(n) { grid-column: auto; }
+    .article-card:nth-child(n) .t { font-size: 18px; }
+    .article-card:first-child .t { font-size: 24px; }
+  }
+
+  /* Notesのことば（黒） */
+  .kotoba { border-left: 3px solid var(--accent); padding-left: 22px; }
+  .kotoba p { font-size: clamp(19px, 2.8vw, 26px); line-height: 1.8; }
+  .notes-link { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* 顔ぶれ */
+  .kao img { border-radius: 0; filter: grayscale(1); border: 0; }
+
+  /* 今日の一滴（黒） */
+  .itteki-box { border-radius: 0; background: transparent; border: 1px solid var(--line); padding: 32px; }
+  .itteki-box .q { font-size: clamp(20px, 3vw, 28px); }
+
+  /* 帯とフッター */
+  .marquee { border-color: var(--ink); }
+  footer { border-top: 0; padding: 96px 20px 120px; }
+  footer .sig { font-size: clamp(88px, 22vw, 260px); line-height: .9; letter-spacing: -0.04em; }
+  footer a { color: var(--ink); border-bottom: 1px solid var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    h2 .ln > span, .facts li span { transform: none !important; opacity: 1 !important; filter: none !important; }
+  }
+
+  /* ===== v2c: 字体ケ（英字 Unbounded × 日本語 Zen角ゴシック New）を全体に ===== */
+  :root { --latin: "Unbounded", "Helvetica Neue", Arial, sans-serif; --ja: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif; }
+  body, .serif, .aisatsu, .itteki-box .q, .kao .name, .brand, .pick .t, .article-card .t, .kotoba p, .promise, #kehai, footer .sig, h2 { font-family: var(--ja); }
+  .heavy, h2, .facts, .hero h1, .article-card .t, .pick .t { font-family: var(--ja); font-weight: 900; }
+  .promise, .kotoba p, .itteki-box .q { font-weight: 700; }
+  .L, .eyebrow, .article-card .no, #curtain .count, .marquee .row, .hero .kata { font-family: var(--latin); }
+  .L { font-weight: 800; letter-spacing: -0.03em; line-height: .9; }
+  .hero .L { font-size: clamp(64px, 15vw, 210px); margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(36px, 7vw, 96px); }
+  .hero .kata { font-size: 11px; font-weight: 500; letter-spacing: .28em; }
+  .eyebrow { font-weight: 500; font-size: 11px; letter-spacing: .3em; }
+  #curtain .count { font-weight: 800; letter-spacing: -0.04em; }
+  .article-card .no { font-weight: 800; letter-spacing: -0.04em; }
+  .marquee .row { font-family: var(--ja); font-weight: 900; }
+  footer .sig.L { font-family: var(--latin); font-size: clamp(72px, 19vw, 230px); }
+  footer .sig-ja { margin-top: 14px; font-weight: 700; letter-spacing: .1em; }
+  .cta, .hero .cta2 { font-family: var(--ja); font-weight: 700; }
+
+  /* ===== 朝刊 ===== */
+  .asakan.wrap { max-width: 1120px; }
+  .asakan .today { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: end;
+    color: inherit; text-decoration: none; }
+  .asakan .frame { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--ink); }
+  .asakan .frame img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: transform 1s var(--settle); }
+  .asakan .today:hover .frame img { transform: scale(1.04) rotate(-1deg); }
+  .asakan .meta { display: grid; gap: 10px; min-width: 0; }
+  .asakan .meta .no { font-size: clamp(64px, 10vw, 128px); line-height: .85; }
+  .asakan .meta .date { font-size: 12px; letter-spacing: .2em; color: var(--ink-soft); font-weight: 500; }
+  .asakan .meta b { font-size: clamp(28px, 4vw, 44px); font-weight: 900; line-height: 1.1; }
+  .asakan .meta p { font-size: 16px; line-height: 1.9; font-weight: 700; }
+  .asakan .meta .go { font-size: 14px; font-weight: 700; border-bottom: 2px solid var(--accent); justify-self: start; padding-bottom: 2px; }
+  .asakan .strip-head { display: flex; justify-content: space-between; gap: 12px; margin: 48px 0 14px; font-weight: 700; font-size: 14px; }
+  .asakan .strip-head .hint { color: var(--ink-soft); font-weight: 400; font-size: 12.5px; }
+  .asakan .strip { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px;
+    scrollbar-width: thin; overscroll-behavior-x: contain; }
+  .asakan .strip a { flex: 0 0 clamp(150px, 22vw, 210px); scroll-snap-align: start; color: inherit; text-decoration: none; }
+  .asakan .strip img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--line); transition: transform .4s var(--settle); }
+  .asakan .strip a:hover img { transform: translateY(-4px); }
+  .asakan .strip .d { display: block; margin-top: 8px; font: 500 11px/1 var(--latin); letter-spacing: .14em; color: var(--ink-soft); }
+  .asakan .strip .t { display: block; margin-top: 6px; font-weight: 900; font-size: 15px; }
+  @media (max-width: 700px) { .asakan .today { grid-template-columns: 1fr; gap: 20px; } }
+  #first .me { display: flex; gap: 16px; align-items: center; margin: 4px 0 30px; }
+  #first .me > div { min-width: 0; }
+  #first .portrait { width: 72px; height: 72px; margin: 0; border: 0; box-shadow: none; flex-shrink: 0; }
+  #first .bio { margin: 0; max-width: none; color: var(--ink); font-size: 15px; font-weight: 700; }
+  #first .aisatsu { margin-top: 4px; }
+  .asakan.wrap { padding-top: 72px; }
+  /* すっきり（10/16 本人「あいうは消した方がいい」）: 左下の時刻の文は出さない */
+  #kehai { display: none; }
+  .peeton-note { margin-top: 14px; color: var(--ink-soft); font-size: 14px; }
+
+  /* ===== 動きの追加: ア F16（スクロールで動画が進む）・ウ F21+F96（購読ボタン）。10/16 本人「あ、う 最高」 ===== */
+  /* ア F16: スクロールで動画が進む */
+  .mv-a .hero-gap { height: 220vh; }
+  /* ウ F21＋F96: 購読ボタンが下から塗りあがり、押すと縮む */
+  .mv-c .hero .cta2, .mv-c section .cta { position: relative; overflow: hidden; isolation: isolate;
+    transition: transform .22s var(--spring), color .2s ease .06s; }
+  .mv-c .hero .cta2::before, .mv-c section .cta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5f4f1;
+    transform: scaleY(0); transform-origin: bottom; transition: transform .28s cubic-bezier(.65, 0, .35, 1); }
+  .mv-c .hero .cta2:is(:hover, :focus-visible, :active), .mv-c section .cta:is(:hover, :focus-visible, :active) { color: #121214; filter: none; }
+  .mv-c .hero .cta2:is(:hover, :focus-visible, :active)::before, .mv-c section .cta:is(:hover, :focus-visible, :active)::before { transform: scaleY(1); }
+  .mv-c .hero .cta2:active, .mv-c section .cta:active { transform: scale(.96); }
+
+  /* ===== v2f: 読み物として整える（10/16 本人: サムネが明朝・動きはくどくしない・余白多め・スマホ最適化・記事は2カラム） ===== */
+  :root { --mincho: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif; }
+  /* 読む所は明朝（サムネの字とそろえる）。英字と最初の画面はそのまま */
+  .promise, .kotoba p, .itteki-box .q, .article-card .t, .article-card .d, .pick .t, .pick .d, #first .bio, .kao .word, .peeton-note {
+    font-family: var(--mincho); }
+  .article-card .t, .pick .t { font-weight: 700; letter-spacing: .01em; }
+  .promise, .kotoba p, .itteki-box .q { font-weight: 500; }
+  h2 { font-size: clamp(32px, 7vw, 64px); margin-bottom: 36px; }
+  /* 読む所の動きは止める（最初の画面・幕開け・購読ボタンだけ残す） */
+  .ink-reveal .ch { opacity: 1 !important; }
+  h2 .ln > span { transform: none !important; filter: none !important; }
+  .thumb, .thumb.in { clip-path: none !important; }
+  .article-card .thumb img, .article-card .thumb.in img, .article-card:hover .thumb.in img { transform: none !important; transition: opacity .3s ease; }
+  .article-card:hover .thumb img { opacity: .88; }
+  .thumb .look { display: none; }
+  .portrait, .portrait.in { clip-path: circle(50% at 50% 50%) !important; transition: none !important; }
+  .marquee.rev { display: none; }
+  /* 余白を多めに */
+  section.wrap { padding-block: clamp(80px, 14vw, 140px); }
+  .wrap { max-width: 760px; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+  .promise { line-height: 2.2; margin-bottom: 48px; }
+  .kotoba { margin-bottom: 44px; }
+  .pick { padding: 22px 0; }
+  /* 記事は2カラム（スマホも2列）。大小は付けない */
+  .essays.wrap { max-width: 1040px; }
+  #articles { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 56px clamp(16px, 4vw, 40px) !important; }
+  .article-card, .article-card:nth-child(n) { grid-column: auto !important; }
+  .article-card .no, .article-card:first-child .no { font-size: 13px; color: var(--ink-soft); -webkit-text-stroke: 0; margin-bottom: 10px; letter-spacing: .1em; font-weight: 500; }
+  .article-card:hover .no { color: var(--accent); }
+  .article-card .t, .article-card:first-child .t, .article-card:nth-child(n) .t { font-size: clamp(15px, 2.2vw, 19px); line-height: 1.6; margin-top: 14px; }
+  .article-card .d, .article-card:not(:first-child) .d { display: block; font-size: clamp(12px, 1.6vw, 14px); line-height: 1.8; margin-top: 6px; }
+  .article-card .date { font-size: 11.5px; margin-top: 8px; }
+  @media (max-width: 560px) {
+    #articles { gap: 40px 14px !important; }
+    .article-card .d { font-size: 12px; }
+    .asakan .today { gap: 24px; }
+  }
+  /* 名前はひらがなの「しべ。」にそろえる（10/16 本人「ひらがなでお願い」・SEO） */
+  .L.name-ja { font-family: var(--ja); font-weight: 900; letter-spacing: -0.02em; }
+  /* 10/16 夕 見比べの直し */
+  /* ア: 横長の画面は、動画を右半分、字を左半分に分けて重ねない */
+  @media (min-aspect-ratio: 1/1) {
+    .hero video, .hero .poster { left: auto; right: 0; width: 56%; object-fit: contain; object-position: 100% 50%; filter: none; }
+    .hero::after { background: linear-gradient(to right, var(--night) 44%, rgba(13,13,15,0) 58%); }
+    .hero .inner { right: 46%; bottom: 50%; transform: translateY(50%); padding-bottom: 0; }
+    .hero .L { font-size: clamp(56px, 8.5vw, 150px); }
+    .hero h1 { font-size: clamp(32px, 4.6vw, 76px); }
+  }
+  /* イ: 最初の区間を短く */
+  .mv-a .hero-gap { height: 100vh; }
+  /* エ: エッセイの終わりにも購読の入口 */
+  .essays .sub-cta { text-align: center; margin-top: 44px; }
+  /* オは本人「イ 前のように歩く」で取り消し（10/16 夕） */
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <img class="portrait" src="assets/shibe-chara.jpg" alt="しべと子どもふたり" width="112" height="112">
-  <div class="brand">しべ。<small>ちゃんとしたママ、やめました</small></div>
-  <p class="bio">4歳と1歳のワーママ。<br>ちゃんとを手放したら、ちょっとだけ息ができた。<br>怒鳴って落ち込む日もあるけど、まぁいっか。</p>
-  <p class="aisatsu" id="aisatsu"></p>
-  <a class="cta" href="https://shibe0.substack.com/subscribe?utm_source=site&utm_medium=web" target="_blank" rel="noopener">Substackで購読する（無料）</a>
+<div id="curtain" aria-hidden="true"><span class="count">000</span><span class="name">しべ。</span><span class="bar"></span></div>
+
+<div class="stack">
+<header class="hero heavy" id="hero">
+  <img class="poster" src="assets/shibe-kinetic-poster.jpg" alt="">
+  <video id="hero-video" muted autoplay loop playsinline preload="auto" poster="assets/shibe-kinetic-poster.jpg">
+    <source src="assets/shibe-kinetic-scrub.mp4" type="video/mp4">
+  </video>
+  <div class="inner">
+    <div class="L name-ja rise" style="transition-delay:0s">しべ。</div>
+    <div class="kata rise" style="transition-delay:.04s">4歳と1歳のワーママ</div>
+    <h1><span class="ln"><span>ちゃんとした</span></span><span class="ln"><span style="transition-delay:.06s">ママ、<em>やめました。</em></span></span></h1>
+    <p class="sub rise" style="transition-delay:.16s">ちゃんとを手放したら、ちょっとだけ息ができた。</p>
+    <a class="cta2 rise" style="transition-delay:.22s" href="https://shibe0.substack.com/subscribe?utm_source=site&utm_medium=web&utm_content=hero" target="_blank" rel="noopener">Substackで購読する（無料） →</a>
+  </div>
 </header>
+<div class="hero-gap"></div>
+<main class="sheet">
+
+
+
+
+
+<section class="wrap asakan" id="asakan">
+  <p class="eyebrow">MORNING PAPER</p><h2>しべの朝刊</h2>
+  <a class="today" id="asakan-today" target="_blank" rel="noopener">
+    <div class="frame"><img alt="" id="asakan-img"></div>
+    <div class="meta">
+      <span class="no L" id="asakan-no"></span>
+      <span class="date L" id="asakan-date"></span>
+      <b id="asakan-title"></b>
+      <p id="asakan-line"></p>
+      <span class="go">Notesで見る →</span>
+    </div>
+  </a>
+  <div class="strip-head"><span>これまでの朝刊</span><span class="hint">横にすべらせて見る →</span></div>
+  <div class="strip" id="asakan-strip"></div>
+</section>
 
 <section class="wrap" id="first">
-  <h2>はじめての方へ</h2>
-  <p class="lead">ここには、こんなものが届きます。</p>
-  <div class="promise">
+  <p class="eyebrow">FOR NEW READERS</p><h2>はじめての方へ</h2>
+  <div class="me">
+    <img class="portrait" src="assets/shibe-chara.jpg" alt="しべと子どもふたり" width="72" height="72">
+    <div><p class="bio">怒鳴って落ち込む日もあるけど、まぁいっか。</p><p class="aisatsu" id="aisatsu"></p></div>
+  </div>
+  <div class="promise ink-reveal">
     長いエッセイを、だいたい2日に1本。<br>
     あいだの日は、短いNotesをぽつぽつ。<br>
     がんばる話ではなくて、「ちゃんと」を少しずつ手放していく記録です。
@@ -215,36 +557,28 @@
       <span class="d">恩返しに、住んでもらうことにした。</span>
     </span>
   </a>
-  <a class="pick" id="pick-latest" href="https://shibe0.substack.com/p/e5a?utm_source=site&utm_medium=web" target="_blank" rel="noopener">
-    <img src="https://substackcdn.com/image/fetch/w_640/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11ab2559-f797-4e2f-9a73-7e335faff631_1920x1080.png" alt="" loading="lazy">
-    <span>
-      <span class="tag">最新のエッセイ</span>
-      <span class="t">服を見に行きたいだけなのに</span>
-      <span class="d">一人になりたい、ただそれだけなのに。</span>
-    </span>
-  </a>
+  
 </section>
 
-<section class="wrap">
-  <h2>エッセイ</h2>
-  <p class="lead">これまでの全部。新しい順です。</p>
+<section class="wrap essays">
+  <p class="eyebrow">ESSAYS</p><h2>エッセイ</h2>
   <div id="articles"><p class="fallback">読み込み中…</p></div>
+  <p class="sub-cta"><a class="cta" href="https://shibe0.substack.com/subscribe?utm_source=site&utm_medium=web&utm_content=essays" target="_blank" rel="noopener">Substackで購読する（無料） →</a></p>
 </section>
 
-<section class="wrap">
-  <h2>Notesのことば</h2>
-  <p class="lead">毎日の短いやつから、いくつか。</p>
+<section class="wrap dark">
+  <p class="eyebrow">NOTES</p><h2>Notesのことば</h2>
 
   <div class="kotoba">
-    <p>痛くないところに貼ったばんそうこうで、箱が空になる朝。</p>
+    <p class="ink-reveal">痛くないところに貼ったばんそうこうで、箱が空になる朝。</p>
     <div class="from">しべの朝刊</div>
   </div>
   <div class="kotoba">
-    <p>どうしても持っていくと言ったミニカーが、ママのポケットで出勤する朝。</p>
+    <p class="ink-reveal">どうしても持っていくと言ったミニカーが、ママのポケットで出勤する朝。</p>
     <div class="from">しべの朝刊</div>
   </div>
   <div class="kotoba">
-    <p>隠れたのはいいけれど、見つけてもらうまで待てない日曜の朝。</p>
+    <p class="ink-reveal">隠れたのはいいけれど、見つけてもらうまで待てない日曜の朝。</p>
     <div class="from">しべの朝刊</div>
   </div>
 
@@ -252,8 +586,7 @@
 </section>
 
 <section class="wrap">
-  <h2>いつもの顔ぶれ</h2>
-  <p class="lead">Substackで、いつも言葉を交わしている方々。(ご本人の了承をいただいて載せています)</p>
+  <p class="eyebrow">FRIENDS</p><h2>いつもの顔ぶれ</h2>
   <a class="kao" href="https://peeton.substack.com" target="_blank" rel="noopener">
     <img src="assets/kao-peeton.png" alt="ピートンさん" width="88" height="88" loading="lazy">
     <span>
@@ -261,12 +594,11 @@
       <span class="word">家庭を実験室にする研究員さん。コメント欄のあたたかさは、たぶんSubstackいち。</span>
     </span>
   </a>
-  <p class="lead" style="margin-top:14px">…ちなみにこのページのどこかを、ご本人が通りかかることがあります。見かけたら、つついてみてください。</p>
+  <p class="peeton-note">…ちなみにこのページのどこかを、ご本人が通りかかることがあります。見かけたら、つついてみてください。</p>
 </section>
 
-<section class="wrap">
-  <h2>今日の一滴</h2>
-  <p class="lead">毎日ひとつだけ、問いを置いています。</p>
+<section class="wrap dark">
+  <p class="eyebrow">TODAY</p><h2>今日の一滴</h2>
   <div class="itteki-box">
     <p class="q" id="itteki"></p>
     <p class="note">答える場所は、ここにはありません。ポケットに入れて、帰ってください。</p>
@@ -275,6 +607,11 @@
     <a class="cta" href="https://shibe0.substack.com/subscribe?utm_source=site&utm_medium=web&utm_content=footer" target="_blank" rel="noopener">今日の分、おつかれさまでした。続きは、受信箱で。</a>
   </p>
 </section>
+
+<div class="marquee rev heavy" aria-hidden="true"><div class="track">
+  <div class="row"><span>まぁいっか</span><span>／</span><span>もう一回！</span><span>／</span><span>ティッシュ、全部。</span><span>／</span><span>そこじゃない、ここ</span><span>／</span></div>
+  <div class="row"><span>まぁいっか</span><span>／</span><span>もう一回！</span><span>／</span><span>ティッシュ、全部。</span><span>／</span><span>そこじゃない、ここ</span><span>／</span></div>
+</div></div>
 
 <div id="kehai" aria-hidden="true"><span class="clock"></span><span class="line"></span></div>
 
@@ -316,8 +653,8 @@
   </svg>
 </a>
 
-<footer class="wrap">
-  <div class="sig">しべ。</div>
+<footer class="wrap dark">
+  <div class="sig L name-ja">しべ。</div><div class="sig-ja">ちゃんとしたママ、やめました</div>
   <div class="links">
     <a href="https://shibe0.substack.com/?utm_source=site&utm_medium=web" target="_blank" rel="noopener">Substack</a>
     ／
@@ -325,6 +662,8 @@
   </div>
   <div class="copy">© しべ｜ちゃんとしたママ、やめました</div>
 </footer>
+</main>
+</div>
 
 <script>
   /* ---- 開いた時刻で、挨拶が変わる ---- */
@@ -383,6 +722,7 @@
     const lerp = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
     const rgb = (c) => `rgb(${c[0]},${c[1]},${c[2]})`;
     function paint() {
+      return; // v2b: 白黒に固定（時刻の気配の行だけ残す）
       const doc = document.documentElement;
       const max = doc.scrollHeight - window.innerHeight;
       const t = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
@@ -452,6 +792,21 @@
     ned.classList.add("here");
   })();
 
+  /* ---- 朝刊（asakan.json：新しい順） ---- */
+  fetch("asakan.json").then(r => r.json()).then(list => {
+    if (!list.length) return;
+    const d = (s) => s.replace(/-/g, ".");
+    const t = list[0], a = document.getElementById("asakan-today");
+    a.href = t.url; document.getElementById("asakan-img").src = t.image;
+    document.getElementById("asakan-img").alt = "朝刊 " + t.title;
+    document.getElementById("asakan-no").textContent = "No." + t.no;
+    document.getElementById("asakan-date").textContent = d(t.date);
+    document.getElementById("asakan-title").textContent = t.title;
+    document.getElementById("asakan-line").textContent = t.line;
+    document.getElementById("asakan-strip").innerHTML = list.slice(1).map(x =>
+      `<a href="${x.url}" target="_blank" rel="noopener"><img src="${x.image}" alt="朝刊 ${x.title}" loading="lazy"><span class="d">No.${x.no} ・ ${d(x.date)}</span><span class="t">${x.title}</span></a>`).join("");
+  }).catch(() => { document.getElementById("asakan").hidden = true; });
+
   const MONTHS = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
   function fmtDate(pubDate) {
     const d = new Date(pubDate);
@@ -473,16 +828,17 @@
       }
       const box = document.getElementById("articles");
       box.innerHTML = "";
-      articles.forEach(a => {
+      articles.forEach((a, i) => {
         const card = document.createElement("a");
         card.className = "article-card";
         card.href = a.link + "?utm_source=site&utm_medium=web";
         card.target = "_blank";
         card.rel = "noopener";
         const img = a.image
-          ? '<img src="https://substackcdn.com/image/fetch/w_640/' + encodeURIComponent(a.image) + '" alt="" loading="lazy">'
+          ? '<div class="thumb"><img src="https://substackcdn.com/image/fetch/w_640/' + encodeURIComponent(a.image) + '" alt="" loading="lazy"><span class="look">読む</span></div>'
           : "";
         card.innerHTML =
+          '<span class="no">' + String(i + 1).padStart(2, "0") + '</span>' +
           img +
           '<div class="t"></div>' +
           '<div class="d"></div>' +
@@ -491,12 +847,134 @@
         card.querySelector(".d").textContent = a.subtitle;
         box.appendChild(card);
       });
+      window.__watchThumbs && window.__watchThumbs();
     })
     .catch(() => {
       document.getElementById("articles").innerHTML =
         '<p class="fallback">一覧を読み込めませんでした。<a href="https://shibe0.substack.com/archive?utm_source=site&utm_medium=web" style="color:var(--accent)">Substackのアーカイブ</a>からどうぞ。</p>';
     });
+
+  /* ===== v2 の動き ===== */
+  (function () {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = document.documentElement;
+    const curtain = document.getElementById("curtain");
+    const video = document.getElementById("hero-video");
+    const start = () => document.body.classList.add("go");
+
+    // F71: 000→100 のあと幕が上がる。最低1秒・最長3秒、2回目からは省く
+    let seen = false; try { seen = sessionStorage.getItem("shibe-curtain") === "1"; } catch (e) {}
+    if (reduce || seen) { curtain.remove(); start(); }
+    else {
+      const count = curtain.querySelector(".count"), bar = curtain.querySelector(".bar");
+      const t0 = performance.now(); let loaded = false;
+      if (document.readyState === "complete") loaded = true; else addEventListener("load", () => loaded = true);
+      (function tick(now) {
+        const el = now - t0, base = Math.min(1, el / 1000);
+        const p = loaded || el > 3000 ? base : Math.min(base, 0.9);
+        count.textContent = String(Math.round(p * 100)).padStart(3, "0");
+        bar.style.transform = "scaleX(" + p + ")";
+        if (p < 1) return requestAnimationFrame(tick);
+        setTimeout(() => {
+          curtain.classList.add("up");
+          setTimeout(start, 300);
+          setTimeout(() => curtain.remove(), 900);
+          try { sessionStorage.setItem("shibe-curtain", "1"); } catch (e) {}
+        }, 80);
+      })(t0);
+    }
+
+    // F15: 画面に入ったら再生、出たら止める
+    if (video) { video.muted = true; video.defaultMuted = true; }
+    document.body.classList.add("mv-a", "mv-c"); // 10/16 本人「あ、う 最高」
+    const has = (k) => document.body.classList.contains(k);
+    // ア（10/16 夕「動画動かない」で直した）: ふだんは自動で再生。スクロール中だけ、動いた分だけ動画も進む／戻る。止めたらそこから再生に戻る
+    let scrubbing = false, idleT = 0, lastY = scrollY;
+    if (video) { video.src = "assets/shibe-kinetic-scrub.mp4"; video.loop = true; video.load(); }
+    const tryPlay = () => { if (video && !scrubbing) video.play().catch(() => {}); };
+    window.__videoMode = () => {};
+    if (!reduce && video) {
+      tryPlay(); addEventListener("touchstart", tryPlay, {passive: true}); addEventListener("pointerdown", tryPlay, {passive: true});
+      video.addEventListener("canplay", tryPlay);
+      new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting ? tryPlay() : video.pause()), {threshold: 0.1}).observe(video);
+      addEventListener("scroll", () => {
+        const dy = scrollY - lastY; lastY = scrollY;
+        if (!has("mv-a") || !video.duration || scrollY > gap.offsetHeight) return;
+        scrubbing = true; video.pause();
+        const d = video.duration;
+        let t = video.currentTime + dy * (d / Math.max(1, gap.offsetHeight)) * 1.5;
+        t = ((t % d) + d) % d;
+        if (!video.seeking) video.currentTime = t;
+        clearTimeout(idleT); idleT = setTimeout(() => { scrubbing = false; tryPlay(); }, 450);
+      }, {passive: true});
+    } else if (video) { video.remove(); }
+
+    // F85: 紙が重なるにつれ、最初の画面が少し縮んで暗くなる
+    const hero = document.getElementById("hero"), gap = document.querySelector(".hero-gap");
+    function stackPaint() {
+      if (reduce) return;
+      const start = Math.max(0, gap.offsetHeight - innerHeight * 0.6);
+      const p = Math.min(1, Math.max(0, (scrollY - start) / innerHeight));
+      hero.style.transform = "scale(" + (1 - 0.08 * p) + ")";
+      hero.style.filter = "brightness(" + (1 - 0.45 * p) + ")";
+    }
+
+    // F08: 触れた帯はなめらかに止まる
+    document.querySelectorAll(".marquee").forEach((m) => {
+      const anim = () => m.querySelector(".track").getAnimations()[0];
+      let raf;
+      const ease = (to, ms) => { const a = anim(); if (!a) return; cancelAnimationFrame(raf);
+        const from = a.playbackRate, t0 = performance.now();
+        (function step(now) { const k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+          a.playbackRate = from + (to - from) * e; if (k < 1) raf = requestAnimationFrame(step); })(t0); };
+      m.addEventListener("pointerenter", () => ease(0, 350));
+      m.addEventListener("pointerleave", () => ease(1, 500));
+    });
+
+    // F106: 1字ずつ span に分け、読み進めると濃くなる
+    const reveals = [...document.querySelectorAll(".ink-reveal")];
+    reveals.forEach((el) => {
+      const walk = (node) => [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) { const f = document.createDocumentFragment();
+          [...n.textContent].forEach((c) => { if (/\s/.test(c)) { f.append(c); return; } const s = document.createElement("span"); s.className = "ch"; s.textContent = c; f.append(s); });
+          n.replaceWith(f); }
+        else if (n.nodeType === 1 && !n.classList.contains("sig")) walk(n);
+      });
+      walk(el); el._chs = [...el.querySelectorAll(".ch")];
+    });
+    function inkPaint() {
+      if (reduce) return;
+      const vh = innerHeight;
+      reveals.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const q = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.55)));
+        const n = el._chs.length;
+        el._chs.forEach((c, i) => { const v = Math.min(1, Math.max(0, (q - i / n * 0.85) / 0.15)); c.style.opacity = (0.16 + 0.84 * v).toFixed(3); });
+      });
+    }
+
+    // F06: 画面に入ったら切り抜きが開く
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {rootMargin: "0px 0px -10% 0px"});
+    window.__watchThumbs = () => document.querySelectorAll(".thumb:not(.in), .portrait:not(.in)").forEach((t) => io.observe(t));
+    window.__watchThumbs();
+
+    const io2 = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io2.unobserve(e.target); } }), {rootMargin: "0px 0px -12% 0px"});
+    document.querySelectorAll(".sheet h2").forEach((h) => { h.innerHTML = '<span class="ln"><span>' + h.innerHTML + '</span></span>'; io2.observe(h); });
+    document.querySelectorAll(".facts").forEach((f) => io2.observe(f));
+
+    function frame() {
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    let ticking = false;
+    const all = () => { stackPaint(); inkPaint(); };
+    addEventListener("scroll", () => { if (!ticking) { requestAnimationFrame(() => { all(); ticking = false; }); ticking = true; } }, {passive: true});
+    addEventListener("resize", all);
+    all();
+  })();
 </script>
+
 
 </body>
 </html>
